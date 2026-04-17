@@ -1,0 +1,201 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("hatter2.png");
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+ 
+  main.card {
+    position: relative;
+    background: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    text-align: center;
+    width: 400px;
+    max-width: 100%;
+    min-height: 400px;
+    overflow: visible;
+  }
+
+  .auth-toast {
+    display: none;
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    text-align: center;
+    border: 1px solid transparent;
+    animation: authToastIn 0.28s ease;
+  }
+
+  .auth-toast.auth-toast--visible {
+    display: block;
+  }
+
+  .auth-toast--error {
+    background: rgba(140, 40, 40, 0.35);
+    border-color: rgba(255, 120, 120, 0.45);
+    color: #ffc8c8;
+  }
+
+  .auth-toast--success {
+    background: rgba(30, 110, 65, 0.35);
+    border-color: rgba(80, 200, 130, 0.45);
+    color: #c8f5d8;
+  }
+
+  .auth-toast--info {
+    background: rgba(26, 118, 194, 0.22);
+    border-color: rgba(55, 192, 255, 0.4);
+    color: #b8e6ff;
+  }
+
+  @keyframes authToastIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+ 
+  input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    background: #2a2a2a;
+    color: #fff;
+  }
+ 
+  .row {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+ 
+  button {
+    padding: 0.5rem 1rem;
+    height: 50px;
+    width: 150px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 17px;
+    background: #1a76c2;
+    color: white;
+    transition: 0.2s;
+  }
+ 
+  button:hover {
+    background: #37c0ff;
+  }
+ 
+  button.secondary {
+    background: #555;
+  }
+
+  .signup-p {
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+  }
+  .signup-p a {
+    color: #37c0ff;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .signup-p a:hover {
+    text-decoration: underline;
+  }
+
+  input[type="text"], input[type="password"], input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    background: #2a2a2a;
+    color: #fff;
+}
+ 
+  #sidebar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+
+ 
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 16px;
+      padding-top: 24px;
+      align-items: flex-start;
+    }
+
+    main.card {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-height: 500px;
+      padding: 1.5rem;
+    }
+
+    .row {
+      margin-top: 1.5rem;
+    }
+
+    #sidebar {
+      width: 160px;
+      right: 10px;
+      top: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    main.card {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      min-height: 560px;
+    }
+
+    .row {
+      margin-top: 1.5rem;
+    }
+  }

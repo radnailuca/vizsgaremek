@@ -1,0 +1,24 @@
+{
+  "name": "bpmap",
+  "version": "1.0.0",
+  "description": "BpMap térkép alkalmazás – szerver SQL adatbázissal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "bpmap",
+    "maps",
+    "budapest"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.6.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.22.0"
+  },
+  "type": "commonjs"
+}

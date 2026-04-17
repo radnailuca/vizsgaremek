@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fooldal.css">
+    <title data-i18n="meta.map">BpMap – Térkép</title>
+    <script src="i18n.js"></script>
+</head>
+<body>
+    <div class="map-wrapper">
+        <div id="map" class="map-container"></div>
+    </div>
+
+    <aside class="panel panel-left" id="leftPanel">
+        <div class="panel-section left-panel-header">
+            <div class="left-panel-header__row" role="group" aria-label="BpMap fejléc">
+                <button type="button" id="bpmapLangBtn" class="bpmap-lang-btn panel-lang-btn">English</button>
+                <div class="left-panel-header__brand">
+                    <a href="kezdooldal.html" class="leftpanel-home-btn" data-i18n-title="map.homeTitle" title="BpMap">
+                        <img src="logo.png" alt="BpMap">
+                    </a>
+                    <h2 class="panel-title" data-i18n="map.homeTitle">BpMap</h2>
+                </div>
+                <button type="button" id="leftPanelClose" class="panel-close" data-i18n-aria-label="map.panelClose" aria-label="Panel bezárása">×</button>
+            </div>
+        </div>
+
+        <div class="left-panel-tabs" role="tablist" data-i18n-aria-label="map.leftTabsAria" aria-label="Keresés vagy útvonal">
+            <button type="button" class="left-panel-tab is-active" id="leftTabRoute" role="tab" aria-selected="true" aria-controls="leftPaneRoute" data-i18n="map.routeTitle">Útvonal</button>
+            <span class="left-panel-tabs__sep" aria-hidden="true"></span>
+            <button type="button" class="left-panel-tab" id="leftTabSearch" role="tab" aria-selected="false" aria-controls="leftPaneSearch" data-i18n="map.tabSearch">Keresés</button>
+        </div>
+
+        <div class="left-panel-pane left-panel-pane--route is-active" id="leftPaneRoute" role="tabpanel" aria-labelledby="leftTabRoute">
+            <div class="panel-section">
+                <div class="input-row">
+                    <label for="routeTravelMode" class="filter-label" data-i18n="map.routeModeLabel">Közlekedés:</label>
+                    <select id="routeTravelMode" class="filter-select route-mode-select" data-i18n-aria-label="map.routeModeAria" aria-label="Útvonal mód">
+                        <option value="DRIVING" data-i18n="map.routeModeDriving">Autó</option>
+                        <option value="WALKING" data-i18n="map.routeModeWalking">Gyalog</option>
+                        <option value="BICYCLING" data-i18n="map.routeModeBicycling">Kerékpár</option>
+                        <option value="TRANSIT" data-i18n="map.routeModeTransit">Tömegközlekedés</option>
+                    </select>
+                    <input type="text" id="routeFrom" data-i18n-placeholder="map.routeFromPh" placeholder="Honnan?" autocomplete="off">
+                    <input type="text" id="routeTo" data-i18n-placeholder="map.routeToPh" placeholder="Hova?" autocomplete="off">
+                    <button type="button" id="routeBtn" class="btn btn-primary" data-i18n="map.routeBtn">Útvonal</button>
+                </div>
+            </div>
+            <div class="panel-section panel-route-info">
+                <h2 class="panel-title" data-i18n="map.routeInfo">Útvonal adatai</h2>
+                <div id="routeSummary" class="route-summary"></div>
+            </div>
+        </div>
+
+        <div class="left-panel-pane left-panel-pane--search" id="leftPaneSearch" role="tabpanel" aria-labelledby="leftTabSearch">
+            <div class="panel-section">
+                <h2 class="panel-title" data-i18n="map.searchPlaces">Helyek keresése</h2>
+                <div class="filter-row">
+                    <label for="placeFilter" class="filter-label" data-i18n="map.filterLabel">Szűrő:</label>
+                    <select id="placeFilter" class="filter-select" data-i18n-aria-label="map.filterAria" aria-label="Kategória szűrő">
+                        <option value="minden">Minden</option>
+                        <option value="ettermek">Éttermek</option>
+                        <option value="bulizo">Bulizóhelyek</option>
+                        <option value="turisztikai">Turisztikai helyek</option>
+                        <option value="kavezo">Kávézók</option>
+                    </select>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="placeSearch" data-i18n-placeholder="map.searchPlaceholder" placeholder="Pl. étterem, múzeum, Budapest..." autocomplete="off">
+                    <button type="button" id="placeSearchBtn" class="btn btn-primary" data-i18n="map.searchBtn">Keresés</button>
+                </div>
+            </div>
+            <div class="panel-section panel-results">
+                <h2 class="panel-title" data-i18n="map.results">Találatok</h2>
+                <div id="placeResults" class="results-list"></div>
+            </div>
+        </div>
+    </aside>
+
+    <aside class="panel panel-right" id="placeDetailPanel">
+        <div class="panel-section panel-header-with-close">
+            <h2 class="panel-title" data-i18n="map.placeDetail">Hely adatai</h2>
+            <button type="button" id="placeDetailClose" class="panel-close" data-i18n-aria-label="map.close" aria-label="Bezárás">×</button>
+        </div>
+        <div class="panel-section panel-detail-body">
+            <div id="placeDetailContent" class="place-detail-content">
+                <p class="detail-placeholder" data-i18n="map.detailHint">Kattints a térképre egy helyre, vagy válassz a találatok közül.</p>
+            </div>
+            <button type="button" id="placeDetailSaveBtn" class="btn btn-save" style="display: none;" data-i18n="map.saveLater">Mentés későbbre</button>
+        </div>
+    </aside>
+
+    <button type="button" id="panelToggle" class="panel-toggle" data-i18n-aria-label="map.toggleLeft" aria-label="Bal panel megnyitása">☰</button>
+    <button type="button" id="openLeftPanel" class="panel-open-btn panel-open-left" data-i18n="map.openSearch" data-i18n-aria-label="map.openSearchAria" aria-label="Keresés panel megnyitása">☰ Keresés</button>
+    <button type="button" id="openRightPanel" class="panel-open-btn panel-open-right" data-i18n="map.openPlace" data-i18n-aria-label="map.openPlaceAria" aria-label="Hely adatai panel megnyitása">Hely adatai ▶</button>
+
+    <script src="config.js"></script>
+    <script src="google-maps-init.js"></script>
+    <script src="location.js"></script>
+    <script src="places.js"></script>
+    <script src="directions.js"></script>
+    <script>
+        (function () {
+            var panelLeft = document.getElementById("leftPanel");
+            var panelRight = document.getElementById("placeDetailPanel");
+            var toggle = document.getElementById("panelToggle");
+            var openLeft = document.getElementById("openLeftPanel");
+            var openRight = document.getElementById("openRightPanel");
+            var closeLeft = document.getElementById("leftPanelClose");
+            var closeRight = document.getElementById("placeDetailClose");
+
+            function updateOpenButtons() {
+                if (openLeft) openLeft.classList.toggle("visible", panelLeft && panelLeft.classList.contains("is-closed"));
+                if (openRight) openRight.classList.toggle("visible", panelRight && panelRight.classList.contains("is-closed"));
+                if (toggle) toggle.style.display = (panelLeft && !panelLeft.classList.contains("is-closed") && window.innerWidth <= 768) ? "flex" : "none";
+            }
+
+            if (toggle && panelLeft) {
+                toggle.addEventListener("click", function () { panelLeft.classList.toggle("is-open"); updateOpenButtons(); });
+            }
+            if (openLeft && panelLeft) {
+                openLeft.addEventListener("click", function () { panelLeft.classList.remove("is-closed"); panelLeft.classList.add("is-open"); updateOpenButtons(); });
+            }
+            if (openRight && panelRight) {
+                openRight.addEventListener("click", function () { panelRight.classList.remove("is-closed"); panelRight.classList.add("is-open"); updateOpenButtons(); });
+            }
+            if (closeLeft && panelLeft) {
+                closeLeft.addEventListener("click", function () { panelLeft.classList.add("is-closed"); panelLeft.classList.remove("is-open"); updateOpenButtons(); });
+            }
+            if (closeRight && panelRight) {
+                closeRight.addEventListener("click", function () {
+                    panelRight.classList.add("is-closed");
+                    panelRight.classList.remove("is-open");
+                    updateOpenButtons();
+                });
+            }
+            updateOpenButtons();
+
+            (function initLeftPanelTabs() {
+                var tabRoute = document.getElementById("leftTabRoute");
+                var tabSearch = document.getElementById("leftTabSearch");
+                var paneRoute = document.getElementById("leftPaneRoute");
+                var paneSearch = document.getElementById("leftPaneSearch");
+                if (!tabRoute || !tabSearch || !paneRoute || !paneSearch) return;
+
+                function activateRoute() {
+                    tabRoute.classList.add("is-active");
+                    tabSearch.classList.remove("is-active");
+                    tabRoute.setAttribute("aria-selected", "true");
+                    tabSearch.setAttribute("aria-selected", "false");
+                    paneRoute.classList.add("is-active");
+                    paneSearch.classList.remove("is-active");
+                    paneRoute.removeAttribute("aria-hidden");
+                    paneSearch.setAttribute("aria-hidden", "true");
+                }
+                function activateSearch() {
+                    tabSearch.classList.add("is-active");
+                    tabRoute.classList.remove("is-active");
+                    tabSearch.setAttribute("aria-selected", "true");
+                    tabRoute.setAttribute("aria-selected", "false");
+                    paneSearch.classList.add("is-active");
+                    paneRoute.classList.remove("is-active");
+                    paneSearch.removeAttribute("aria-hidden");
+                    paneRoute.setAttribute("aria-hidden", "true");
+                }
+                tabRoute.addEventListener("click", activateRoute);
+                tabSearch.addEventListener("click", activateSearch);
+                activateRoute();
+            })();
+        })();
+    </script>
+</body>
+</html>
