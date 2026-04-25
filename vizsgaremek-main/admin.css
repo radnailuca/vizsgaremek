@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #0f172a;
+  padding: 24px;
+}
+
+.admin-top {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: auto minmax(260px, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.session-badge {
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.admin-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.admin-subtitle {
+  margin-top: 0;
+  color: #475569;
+}
+
+.admin-section {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  background: transparent;
+  color: #ffffff;
+}
+
+.admin-section--top {
+  margin: 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+.admin-section h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+.hint {
+  color: #64748b;
+  margin-bottom: 0;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.admin-content {
+  max-width: 1100px;
+  margin: 130px auto 0;
+}
+
+.users-section h2 {
+  margin: 0 0 14px;
+  color: #ffffff;
+}
+
+.users-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.profile-card--super-admin {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+.profile-card--admin {
+  background: rgba(255, 130, 130, 0.3);
+}
+
+.profile-card--user {
+  background: rgba(0, 0, 255, 0.3);
+}
+
+.profile-card--current-admin {
+  background: rgba(144, 238, 144, 0.3);
+}
+
+.profile-card p {
+  margin: 0 0 8px;
+}
+
+.profile-card p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-card__body {
+  min-width: 0;
+}
+
+.profile-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-card__request {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.25);
+  color: #fff5d6;
+  padding: 9px 12px;
+  font-weight: 700;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.role-toggle {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.role-toggle__btn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.role-toggle__btn:hover {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.role-toggle__btn.is-active {
+  color: #37c0ff;
+  background: rgba(55, 192, 255, 0.14);
+}
+
+.role-toggle__sep {
+  width: 1px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.role-toggle--disabled {
+  opacity: 0.55;
+}
+
+.role-toggle__btn:disabled {
+  cursor: not-allowed;
+}
+
+.profile-card__delete {
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  background: #b91c1c;
+  color: #ffffff;
+  padding: 9px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.profile-card__delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.users-empty {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-secondary {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .admin-top {
+    position: static;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    justify-content: flex-start;
+  }
+
+  .admin-content {
+    margin-top: 18px;
+  }
+
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Jelszó visszaállítás</title>
+    <script src="i18n.js"></script>
+</head>
+<body>
+
+    <button type="button" id="bpmapLangBtn" class="bpmap-lang-btn">English</button>
+
+<main class="card">
+    <h1>Jelszó visszaállítás</h1>
+    <div id="authToast" class="auth-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <label for="email">Email</label>
+    <input id="email" type="text" autocomplete="email">
+
+    <div class="row">
+        <button id="requestBtn" type="button">Küldés</button>
+    </div>
+
+    <p class="signup-p">
+        <a href="login.html">Vissza a bejelentkezéshez</a>
+    </p>
+</main>
+
+<script src="ujJelszo.js"></script>
+
+</body>
+</html>
