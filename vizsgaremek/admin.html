@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin oldal</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="admin-top">
+    <div class="session-badge" aria-live="polite">
+      Session: <span id="sessionRemaining">--:--</span>
+    </div>
+
+    <div class="admin-center">
+      <h1 class="admin-title">Admin oldal</h1>
+    </div>
+
+    <div class="admin-actions">
+      <a href="kezdooldal.html" class="btn btn-secondary">Kezdőoldal</a>
+      <button type="button" id="logoutBtn" class="btn btn-danger">Kijelentkezés</button>
+    </div>
+  </header>
+
+  <main class="admin-content">
+    <section class="users-section">
+      <h2>Felhasználók</h2>
+      <div id="usersGrid" class="users-grid"></div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
